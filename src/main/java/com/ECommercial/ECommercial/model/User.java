@@ -9,6 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -25,32 +30,49 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id; 
 	
-
-	
+	@NotEmpty(message = "Name may not be empty")
+	@Size(min = 2, max = 32, message = "Name must be between 2 and 32 characters long") 
 	@Column(name="name")
 	private String name; 
 	
 	@Column(name="job")
 	private String job; 
 	
+	@NotEmpty(message = "email may not be empty")
 	@Column(name = "email")
 	private String email; 
+	
 	
 	@Column(name = "dateOfBirth")	
 	private String dateOfBirth;
 	
+	@NotEmpty(message = "Name may not be empty")
 	@Column(name="age")
-	private String age; 
+	private int age; 
 	
+	@NotBlank(message = "Username cannot be blank")
 	@Column(name="username")
 	private String userName;
 	
+	@NotEmpty(message = "Please enter your password")
+	@Size(min = 4, max = 24, message = "Password must be atleast 4 to 24 words")
 	@Column(name="password")
 	private String password;
 	
 	@Column(name="usertype")
 	private String userType; 
 	
+	@Column(name="is_enable")
+	private boolean isEnable; 
+	
+	public boolean isEnable() {
+		return isEnable;
+	}
+
+	public void setEnable(boolean isEnable) {
+		this.isEnable = isEnable;
+	}
+
 	@JsonManagedReference
 	@OneToOne(mappedBy= "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Address address;
@@ -65,11 +87,11 @@ public class User {
 		this.job = job;
 	}
 
-	public String getAge() {
+	public int getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 
@@ -111,7 +133,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", job=" + job + ", email=" + email + ", dateOfBirth="
 				+ dateOfBirth + ", age=" + age + ", userName=" + userName + ", password=" + password + ", userType="
-				+ userType + ", address=" + address + "]";
+				+ userType + ", isEnable=" + isEnable + ", address=" + address + "]";
 	}
 
 	public int getId() {

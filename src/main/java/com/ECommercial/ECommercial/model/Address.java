@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -18,18 +19,23 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id; 
 	
+	@NotBlank
 	@Column(name="address")
 	private String address;
 	
+	@NotBlank
 	@Column(name ="city")
 	private String city;
 	
+	@NotBlank
 	@Column(name="country")
 	private String country; 
 	
+	@NotBlank
 	@Column(name="state")
 	private String state;
 	
+	@NotBlank
 	@Column(name="zipcode")
 	private String zipcode;
 	

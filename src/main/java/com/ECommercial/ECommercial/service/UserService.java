@@ -30,11 +30,7 @@ public class UserService {
 	// checking the email and password to login 
 	// if the email exist and password matched then login 
 	
-	public int loginUser(String email){ 
-		
-		
-
-		
+	public int loginUser(String email, String user, String password){ 
 		return 1; 
 	}
 
